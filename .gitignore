@@ -27,3 +27,48 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+# IDE
+.idea
+.vscode
+
+# Byte file/compiled/DLL
+__pycache__
+*.pyc
+.swp
+
+# Pipenv
+Pipfile.lock
+Pipfile
+
+# pyenv
+.python-version
+
+# Testing
+.pytest_cache
+pytest.ini
+
+# Environments
+.env
+env
+venv
+
+# lambda
+lambda_zip
+lambda-zip
+layer.zip
+
+# Build artifacts
+reports
+*.egg-info
+docs/build
+error_schema.log
+
+#local stack setting
+local
+crash.log
+
+# Custom
+provider.tf
+.terraform.lock.hcl
+build
