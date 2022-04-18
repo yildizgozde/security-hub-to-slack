@@ -5,8 +5,8 @@ resource "aws_cloudwatch_event_rule" "SecurityHubFindingsToSlack" {
   description = "CloudWatchEvents Rule to enable SecurityHub Findings in Slack "
 
   event_pattern = jsonencode({
-    "source"    = ["aws.securityhub"]
-    "detail-type": ["Security Hub Findings - Imported"]
+    "source" = ["aws.securityhub"]
+    "detail-type" : ["Security Hub Findings - Imported"]
   })
 }
 
@@ -15,25 +15,25 @@ resource "aws_cloudwatch_event_rule" "GuardDutyFindingsToSlack" {
   description = "CloudWatchEvents Rule to enable GuardDuty Findings in Slack "
 
   event_pattern = jsonencode({
-    "source": ["aws.guardduty"],
-    "detail-type": ["GuardDuty Finding"]
+    "source" : ["aws.guardduty"],
+    "detail-type" : ["GuardDuty Finding"]
   })
 }
 
 resource "aws_lambda_permission" "SecurityHubFindingsToSlack" {
-    statement_id = "AllowExecutionFromCloudWatchForSH"
-    action = "lambda:InvokeFunction"
-    function_name = aws_lambda_function.lambdafindingsToSlack.arn
-    principal = "events.amazonaws.com"
-    source_arn = aws_cloudwatch_event_rule.SecurityHubFindingsToSlack.arn
+  statement_id  = "AllowExecutionFromCloudWatchForSH"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambdafindingsToSlack.arn
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.SecurityHubFindingsToSlack.arn
 }
 
 resource "aws_lambda_permission" "GuardDutyFindingsToSlack" {
-    statement_id = "AllowExecutionFromCloudWatchForGD"
-    action = "lambda:InvokeFunction"
-    function_name = aws_lambda_function.lambdafindingsToSlack.arn
-    principal = "events.amazonaws.com"
-    source_arn = aws_cloudwatch_event_rule.GuardDutyFindingsToSlack.arn
+  statement_id  = "AllowExecutionFromCloudWatchForGD"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambdafindingsToSlack.arn
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.GuardDutyFindingsToSlack.arn
 }
 
 
@@ -139,5 +139,5 @@ data "archive_file" "lambda_zip_inline" {
   output_path = "/tmp/lambda_zip_inline.zip"
   source_dir  = "build"
 
-  depends_on = [ null_resource.package ]
+  depends_on = [null_resource.package]
 }
