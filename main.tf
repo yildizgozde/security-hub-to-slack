@@ -130,7 +130,7 @@ resource "null_resource" "package" {
   }
 
   provisioner "local-exec" {
-    command = "rm -rf build && mkdir build && cp '${path.module}/script.py' build && pip install -t build requests"
+    command = "rm -rf build && mkdir build && cp '${path.module}/script.py' build && pip3 install -t build requests"
   }
 }
 
